@@ -1,10 +1,14 @@
 const {
     app,
     BrowserWindow,
-    ipcMain
+    ipcMain,
+    Menu
 } = require('electron')
 
 const electron = require('electron')
+
+// Including Menu Builder
+let customMenu = require('./app/menu/MenuBuilder.js')
 
 let win
 
@@ -33,6 +37,8 @@ function createWindow() {
     win.loadURL(`file://${__dirname}/bundle/index.html`)
 
     win.on("closed", () => win = null )
+
+    Menu.setApplicationMenu(customMenu)
 
 }
 
